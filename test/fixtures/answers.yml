@@ -2,10 +2,10 @@
 
 one:
   title: MyString
-  level: 1
-  category: one
+  correct: false
+  question: one
 
 two:
   title: MyString
-  level: 1
-  category: two
+  correct: false
+  question: two
