@@ -50,8 +50,12 @@ ActiveRecord::Schema.define(version: 2021_10_18_121828) do
   end
 
   create_table "tests_users", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "test_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["test_id"], name: "index_tests_users_on_test_id"
+    t.index ["user_id"], name: "index_tests_users_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -66,4 +70,6 @@ ActiveRecord::Schema.define(version: 2021_10_18_121828) do
   add_foreign_key "questions", "tests"
   add_foreign_key "tests", "categories"
   add_foreign_key "tests", "users"
+  add_foreign_key "tests_users", "tests"
+  add_foreign_key "tests_users", "users"
 end
