@@ -6,7 +6,7 @@ ruby '2.7.4'
 # PostgresDB
 gem 'pg', '~> 1.2'
 gem 'pg_search'
-gem 'mini_racer'
+gem 'mini_racer', '~>0.4.0' #Пришлось зафиксировать 0.4.0, так как не может создать ппку при переходе до последней версии, либо нужно зависимость libv8-nede ~>16.10.0.0 тоже выставлять. Пока забил на обновление.
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.1.4', '>= 6.1.4.1'
 # Use sqlite3 as the database for Active Record
@@ -25,6 +25,7 @@ gem 'jbuilder', '~> 2.7'
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
+gem 'faker', '~>2.20', '>=2.1.2'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
