@@ -13,6 +13,12 @@ require 'faker'
 #  {name: 'admin', email: 'admin@test.ru', password: 'admin_pass'}
 #])
 puts 'Seeding...'
+admin = User.create([
+  {name: 'admin', email: 'admin@test.ru', password: 'admin'} # Архитектор всех Тестов, права уровень Администртор
+]) 
+testuser = User.create([
+  {name: 'user', email: 'user@test.ru', password: 'user'} # Тестовый пользователь, права уровень Пользователь
+])
 5.times do
   users = User.create([{
     name: Faker::Name.name,
@@ -41,11 +47,11 @@ sleep 1
 
 puts 'Now! tests'
 tests = Test.create([
-  {title: 'HTML', level: 1, category_id: categories[0].id}, # ..., user_id: users[0].id} - удалил, так как это в соединительной таблице нужно указывать
-  {title: 'Ruby', level: 2, category_id: categories[1].id},
-  {title: 'JavaScript', level: 2, category_id: categories[0].id},
-  {title: 'GO', level: 3, category_id: categories[2].id},
-  {title: 'Node', level: 2, category_id: categories[1].id}
+  {title: 'HTML', level: 1, category_id: categories[0].id, user_id: 1}, #., user_id: users[0].id} - удалил, так как это в соединительной таблице нужно указывать
+  {title: 'Ruby', level: 2, category_id: categories[1].id, user_id: 1},
+  {title: 'JavaScript', level: 2, category_id: categories[0].id, user_id: 1},
+  {title: 'GO', level: 3, category_id: categories[2].id, user_id: 1},
+  {title: 'Node', level: 2, category_id: categories[1].id, user_id: 1}
 ])
 sleep 1
 
@@ -91,19 +97,19 @@ sleep 1
 puts 'Now! tests_users'
 # Заполнить данные для соединительной таблицы Tests_Users:
 tests_users = TestsUser.create([
-  {user_id: 1, test_id: 1},
-  {user_id: 1, test_id: 2},
-  {user_id: 1, test_id: 3},
-  {user_id: 1, test_id: 4},
-  {user_id: 1, test_id: 5},
-  {user_id: 2, test_id: 1},
-  {user_id: 2, test_id: 2},
-  {user_id: 2, test_id: 3},
-  {user_id: 2, test_id: 4},
-  {user_id: 2, test_id: 5},
-  {user_id: 3, test_id: 2},
-  {user_id: 4, test_id: 5},
-  {user_id: 5, test_id: 3}
+  {user_id: 3, test_id: 1}, # {user_id: users[3].id, test_id: tests[1].id},
+  {user_id: 3, test_id: 2}, # {user_id: users[3].id, test_id: tests[2].id},
+  {user_id: 3, test_id: 3}, # {user_id: users[3].id, test_id: tests[3].id},
+  {user_id: 3, test_id: 4}, # {user_id: users[3].id, test_id: tests[4].id},
+  {user_id: 3, test_id: 5}, # {user_id: users[3].id, test_id: tests[5].id},
+  {user_id: 4, test_id: 1}, # {user_id: users[4].id, test_id: tests[1].id},
+  {user_id: 4, test_id: 2}, # {user_id: users[4].id, test_id: tests[2].id},
+  {user_id: 4, test_id: 3}, # {user_id: users[4].id, test_id: tests[3].id},
+  {user_id: 4, test_id: 4}, # {user_id: users[4].id, test_id: tests[4].id},
+  {user_id: 4, test_id: 5}, # {user_id: users[4].id, test_id: tests[5].id},
+  {user_id: 5, test_id: 2}, # {user_id: users[5].id, test_id: tests[2].id},
+  {user_id: 6, test_id: 5}, # {user_id: users[6].id, test_id: tests[5].id},
+  {user_id: 7, test_id: 3}  # {user_id: users[7].id, test_id: tests[3].id}
 ])
   #  {title: 'GO', level: 3, category_id: categories[2].id, user_id: users[0].id},
   #  {title: 'Node', level: 2, category_id:  categories[1].id, user_id: users[1].id}
