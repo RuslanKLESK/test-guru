@@ -10,9 +10,9 @@ module TestGuru
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
-    config.time_zone = 'UTC'
+    config.time_zone = 'Moscow'
     config.location = 'Europe/Moscow'
-    config.i18n.default_locale = :ru
+    config.i18n.default_locale = :en
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
@@ -20,5 +20,6 @@ module TestGuru
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+    # config.active_record.schema_format :ruby   # но также он может быть установлен в :sql
   end
 end
