@@ -7,8 +7,6 @@ class Test < ApplicationRecord
   has_many :users, through: :tests_users
 
   def self.all_tests_of_category(category)
-    # Test.joins('JOIN categories ON tests.category_id = categories.id').where('categories.title = :title', title: category).order(title: :desc).pluck(:title) #it`s work! 
-    # Test.joins(:category).where('categories.title = :title', title: category).order(title: :desc).pluck(:title) # It`s wokk too, but ruby version:
     Test.joins(:category).where(categories: {title: category}).order(title: :desc).pluck(:title)
   end
 end
