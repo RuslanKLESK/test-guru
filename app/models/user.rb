@@ -2,7 +2,7 @@ class User < ApplicationRecord
   # has_and_belongs_to_many :tests
   has_many :tests_users
   has_many :tests, through: :tests_users
-  has_many :authors, class_name: 'Test', foreign_key: "test_id"
+  has_many :authored_tests, class_name: 'Test', foreign_key: 'user_id'
 
   validates :name, :email, :password, presence: true
   

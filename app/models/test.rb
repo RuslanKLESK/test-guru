@@ -9,14 +9,14 @@ class Test < ApplicationRecord
   scope :easy,   -> { where(level: 0..1) }
   scope :medium, -> { where(level: 2..4) }
   scope :higher, -> { where(level: 5..Float::INFINITY) }
-  scope :tests_of_category, -> { Test.joins(:category) }
+  scope :tests_of_category, -> { Test.joins(:category).where(categories: {title: category}) }
 
   validates :title, presence: true
   validates :title, uniqueness: { scope: :level, message: "Repeats test-name value and level" }
   validates :level, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
   
   def self.all_tests_of_category(category)
-    tests_of_category.where(categories: {title: category}).order(title: :desc).pluck(:title)
+    tests_of_category.order(title: :desc).pluck(:title)
   end
 
 end
