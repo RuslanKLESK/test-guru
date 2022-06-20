@@ -17,7 +17,7 @@ class TestsController < ApplicationController
   end
 
   def create
-    test = Test.create!(test_params)
+    test = Test.create(test_params)
     render plain: test.inspect
   end
 

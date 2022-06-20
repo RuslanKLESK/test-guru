@@ -11,18 +11,12 @@ def new
 end
 
 def create
-  # @test = params[:test_id]
-  # byebug
-  # @question = Question.create!(test_id: params[:test_id], body: question_params)
-  @question = test.questions.create!(question_params)
+  @question = @test.questions.create(question_params)  # @question = Question.create!(test_id: params[:test_id], body: question_params)
   render plain: @question.inspect
-
-  
-  # render inline: '<%= @question.body %>'
 end
 
 def show
-    render inline: '<%= @question.body %>'     # '<h1>Show one Question by id:</h1>'.html_safe
+  render inline: '<%= @question.body %>'     # '<h1>Show one Question by id:</h1>'.html_safe
 end
 
 def update
@@ -31,9 +25,9 @@ def update
 end
 
 def destroy
-    render html: '<h1>Destroy one Question by id:</h1>'.html_safe
-    question = Question.find_by(params[:id])
-    question.destroy
+  question = Question.find_by(params[:id])
+  question.destroy
+  render html: '<h1>Destroy one Question by id:</h1>'.html_safe
 end
 
 def search
