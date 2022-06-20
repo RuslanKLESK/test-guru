@@ -1,9 +1,10 @@
 class TestsController < ApplicationController
-    
+  
+  before_action :find_test, only: %i[show]
+
   def index
     result = ["Class: #{params.class}", "Parameters:  #{params.inspect}"]
-    render plain: result.join("\n")  
-
+     render plain: result.join("\n")  
     # respond_to do |format|
     #    format.html { render html: '<h1>All tests</h1>'.html_safe }
     #    format.json { render json: { tests: Test.all } }
@@ -16,12 +17,12 @@ class TestsController < ApplicationController
   end
 
   def create
-    test = Test.create(test_params)
+    test = Test.create!(test_params)
     render plain: test.inspect
   end
 
   def show
-    render html: 'Show test'.html_safe
+    render inline: '<%= @test.title %>' # render html: 'Show test'.html_safe
     logger.info(self.object_id)
   end
  
@@ -40,10 +41,14 @@ class TestsController < ApplicationController
     render plain: result.join("\n")  
   end
 
-  private
+  private # ================================================================================================
 
   def test_params
     params.require(:test).permit(:title, :level)
+  end
+
+  def find_test
+    @test = Test.find(params[:id])
   end
 
 end
