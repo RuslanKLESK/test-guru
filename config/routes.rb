@@ -9,5 +9,5 @@ resources :tests do
 end
 
 get '/tests/:category/:title', to: 'tests#search', level: 2
-post '/tests/<%= {params[:test_id] %>/questions', to: 'questions#create'
+get '/questions/:id/destroy', to: 'questions#destroy'
 end
