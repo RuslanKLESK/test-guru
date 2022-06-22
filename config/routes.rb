@@ -9,5 +9,5 @@ resources :tests do
 end
 
 get '/tests/:category/:title', to: 'tests#search', level: 2
-get '/questions/:id/destroy', to: 'questions#destroy'
+
 end
